@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<link rel="icon" href="icon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=10"/>
+		<style>
+			#container {
+				position: relative;
+				top: 0px;
+				left: px;
+			}
+			#name {
+				position: fixed;
+				background-color: black;
+				border-style: solid; 
+				border-width: 5px;
+				border-color: #4EE2EC;
+				color: white;
+				text-align: center;
+				font-family: Arial;
+			}
+			#round {
+				position: fixed;
+				background-color: black;
+				top: -10px;
+				left: -10px;
+				height: 0px;
+				width: 0px;
+			}
+			#button {
+				position: fixed;
+				top: -100;
+				left: -100;
+			}
+			.button {
+				background-color: black;
+				border-style: solid; 
+				border-width: 5px;
+				border-color: #4EE2EC;
+				position: fixed;
+			}
+			body {
+				background-color: black;
+			}
+		</style>
+	</head>
+	<body onload="load()">
+		<div id="container">
+			<canvas id="element" class="button"></canvas>
+			<canvas id="w" class="button" onmousedown="buttonCode('w')"></canvas>
+			<canvas id="a" class="button" onmousedown="buttonCode('a')"></canvas>
+			<canvas id="s" class="button" onmousedown="buttonCode('s')"></canvas>
+			<canvas id="d" class="button" onmousedown="buttonCode('d')"></canvas>
+			<canvas id="1" class="button" onmousedown="buttonCode('1')"></canvas>
+			<canvas id="m" class="button" onmousedown="buttonCode('m')"></canvas>
+			<canvas id="space" class="button" onmousedown="buttonCode(' ')"></canvas>
+			<canvas id="text" class="button"></canvas>
+			<form action="save_data.php" method="get">
+				<input type="text" name="round" id="round">
+				<input type="text" name="name" id="name" maxlength="9" value="Type Here" onFocus="if(this.value == 'Type Here') {this.value='';}">
+				<input type="submit" id="button">
+			</form>
+		</div>
+		
+		<script type="text/JavaScript" src="processObjects.js"></script>
+		<script type="text/JavaScript" src="buttonControl.js"></script>
+		<script type="text/JavaScript" src="main.js"></script>
+		<script type="text/JavaScript" src="bulletClass.js"></script>
+		<script type="text/JavaScript" src="drawObjects.js"></script>
+		<script type="text/JavaScript" src="enemyClass.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script>
+			$(function(){
+				$('#name').keyup(function()
+				{
+					var yourInput = $(this).val();
+					re = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
+					var isSplChar = re.test(yourInput);
+					if(isSplChar)
+					{
+						var no_spl_char = yourInput.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+						$(this).val(no_spl_char);
+					}
+				});
+			 
+			});
+		</script>
+	</body>
+</html>
